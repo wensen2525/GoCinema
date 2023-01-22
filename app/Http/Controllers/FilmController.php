@@ -87,7 +87,11 @@ class FilmController extends Controller
             'movie_nama' => 'required|string'
         ]);
 
-        
+        $film->movie->update([
+            'movie_name' => $request->movie_name,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

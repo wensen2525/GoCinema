@@ -109,9 +109,9 @@
                                                                               @csrf
                                                                               <button type="submit" class="btn btn-danger d-block mb-3 col-12" title='Delete'>Delete</button>
                                                                         </form>
-                                                                        <form method="POST" action="{{ route('film.update',$film->id) }}">
-                                                                              @method('UPDATE')
+                                                                        <form method="POST" action="{{ route('film.update',$film) }}">
                                                                               @csrf
+                                                                              <input type="text" placeholder="nama_baru" id="movie_nama" name="movie_nama">
                                                                               <button type="submit" class="btn btn-success d-block col-12" title='Update'>Update</button>
                                                                         </form>
                                                                   </div>
