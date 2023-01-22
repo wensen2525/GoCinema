@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Film;
 use App\Models\Cinema;
 use App\Models\Provinsi;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 
@@ -82,7 +83,11 @@ class FilmController extends Controller
      */
     public function update(UpdateFilmRequest $request, Film $film)
     {
-        //
+        $request->validate([
+            'movie_nama' => 'required|string'
+        ]);
+
+        
     }
 
     /**
@@ -93,11 +98,21 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        //
+        // dd($film);
+        // $deleted = DB::table('films')->where('votes', '>', 100)->delete();
+        $film->delete();
+
+        return redirect()->back();
     }
 
     public function pesan()
     {
 
+    }
+
+    public function tampil($cinema)
+    {
+        dd($cinema);
+        return view('transactions.index');
     }
 }

@@ -18,10 +18,7 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::get('/', [FilmController::class,'index'])->name('index');
 
 // Route::prefix('participants')->name('participants.')->group(function () {
 //     Route::get('export', [ParticipantController::class, 'export'])->name('export');
@@ -35,7 +32,14 @@ use App\Http\Controllers\TransactionController;
 
 Route::prefix('film')->name('film.')->group(function () {
     Route::get('{provinsi}', [FilmController::class, 'show'])->name('show');
+    // Route::get('destroy', [FilmController::class, 'destroy'])->name('destroy');
 });
 Route::resource('film', FilmController::class);
+
+// Route::prefix('transactions')->name('transactions.')->group(function () {
+//     Route::get('{film}', [TransactionController::class, 'tampil'])->name('tampil');
+// });
+// Route::resource('transactions', TransactionController::class);
+
 
 

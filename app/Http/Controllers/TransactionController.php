@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Film;
+use App\Models\Movie;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
@@ -15,7 +17,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+
     }
 
     /**
@@ -36,7 +38,7 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+
     }
 
     /**
@@ -47,7 +49,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        
     }
 
     /**

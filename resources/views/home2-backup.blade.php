@@ -22,7 +22,7 @@
                   </div>
                   <div class="container">
                         <div class="row mx-auto border border-1 border-dark rounded-2">
-                              <img src="{{ asset('storage/poster/relasi.jpg') }}" alt="" class="img-fluid">
+                              <img src="storage/poster/relasi.jpg" alt="" class="img-fluid">
                         </div>
                   </div>
 

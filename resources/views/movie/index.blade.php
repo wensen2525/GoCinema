@@ -87,17 +87,37 @@
                         <div class="row">
                               <div class="tab-content">
                                     @foreach ($cinemas as $cinema)
-
+                                          
                                           <div class="tab-pane fade" id="{{ $cinema->cinema_alias }}" role="tabpanel">
                                                 <h4 class="text-center mb-3 mt-4">SHOWING NOW</h4>
                                                 <div class="col-12 row mb-3 d-flex justify-content-center">
-                                                      @foreach($cinema->films as $film)
-                                                            <div class="col-3">
-                                                                  <img src="{{ asset('storage/movie/'. $film->movie->picture) }}" class="img-fluid rounded-3 rounded" alt="">
-                                                                  <p class="text-center my-2 fs-4 fw-semibold text-break">{{ $film->movie->movie_nama }}</p>
-                                                                  <a href="" class="btn btn-primary d-block mb-5">Pesan</a>
-                                                            </div>
-                                                      @endforeach
+                                                      @if ($cinema->films->isEmpty())
+                                                            <div class="col-3 text-center">
+                                                                  <p>TIDAK ADA FILM UNTUK HARI INI</p>
+                                                            </div> 
+                                                      @else
+                                                            @foreach($cinema->films as $film)
+                                                                  
+                                                                  <div class="col-3">
+                                                                        <a href="">
+                                                                              <img src="{{ asset('storage/movie/'. $film->movie->picture) }}" class="img-fluid rounded-3 rounded" alt="">
+                                                                        </a>
+                                                                        <p class="text-center my-2 fs-4 fw-semibold text-break">{{ $film->movie->movie_nama }}</p>
+                                                                        <a class="btn btn-primary d-block mb-3" href="">Pesan</a>
+                                                                        <form method="POST" action="{{ route('film.destroy',$film->id) }}">
+                                                                              @method('DELETE')
+                                                                              @csrf
+                                                                              <button type="submit" class="btn btn-danger d-block mb-3 col-12" title='Delete'>Delete</button>
+                                                                        </form>
+                                                                        <form method="POST" action="{{ route('film.update',$film->id) }}">
+                                                                              @method('UPDATE')
+                                                                              @csrf
+                                                                              <button type="submit" class="btn btn-success d-block col-12" title='Update'>Update</button>
+                                                                        </form>
+                                                                  </div>
+                                                                  
+                                                            @endforeach
+                                                      @endif
                                                 </div>
 
                                                 <h4 class="text-center mb-3 p-0">UPCOMMING</h4>
@@ -109,33 +129,7 @@
                                                 </div>
                                           </div>
 
-                                          {{-- modal --}}
-                                          <div class="modal fade" id="pesan" tabindex="-1" aria-labelledby="pesanLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                      <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                  <h1 class="modal-title fs-5" id="pesanLabel">Pesan</h1>
-                                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                  <form>
-                                                                  <div class="mb-3">
-                                                                  <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                                                  <input type="text" class="form-control" id="recipient-name">
-                                                                  </div>
-                                                                  <div class="mb-3">
-                                                                  <label for="message-text" class="col-form-label">Message:</label>
-                                                                  <textarea class="form-control" id="message-text"></textarea>
-                                                                  </div>
-                                                                  </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                  <button type="button" class="btn btn-primary">Send message</button>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
+                                          
                                     @endforeach
                               </div>
                         </div>
