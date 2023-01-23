@@ -134,8 +134,6 @@ class FilmController extends Controller
      */
     public function destroy(Film $film)
     {
-        // dd($film);
-        // $deleted = DB::table('films')->where('votes', '>', 100)->delete();
         $film->delete();
 
         return redirect()->back();
