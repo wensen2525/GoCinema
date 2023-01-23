@@ -32,7 +32,7 @@ Route::get('/', [FilmController::class,'index'])->name('index');
 
 Route::prefix('film')->name('film.')->group(function () {
     Route::get('{provinsi}', [FilmController::class, 'show'])->name('show');
-    // Route::get('destroy', [FilmController::class, 'destroy'])->name('destroy');
+    Route::get('{role}', [FilmController::class, 'gantiRole'])->name('ganti-role');
 });
 Route::resource('film', FilmController::class);
 

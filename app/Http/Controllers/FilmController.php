@@ -11,6 +11,17 @@ use App\Http\Requests\UpdateFilmRequest;
 
 class FilmController extends Controller
 {
+
+    public $role = 'admin';
+    
+    public function gantiRole($role)
+    {
+        dd($role);
+        $this->role = $role;
+
+        return redirect()->back();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -57,9 +68,18 @@ class FilmController extends Controller
 
         $cinemas = Cinema::all();
         // dd($cinemas);
+        // if($this->role === 'admin')
+        // {
+        //     $role = 'admin';
+        // }
+        // elseif ($this->role === 'user') 
+        // {
+        //     $role = 'user';
+        // }
         return view('movie.index',[
             'provinsi' => $provinsi,
-            'cinemas' => $cinemas
+            'cinemas' => $cinemas,
+            'role' => $this->role
         ]);
     }
 
@@ -83,12 +103,13 @@ class FilmController extends Controller
      */
     public function update(UpdateFilmRequest $request, Film $film)
     {
+        // dd($request);
         $request->validate([
             'movie_nama' => 'required|string'
         ]);
 
         $film->movie->update([
-            'movie_name' => $request->movie_name,
+            'movie_nama' => $request->movie_nama
         ]);
 
         return redirect()->back();
@@ -109,14 +130,11 @@ class FilmController extends Controller
         return redirect()->back();
     }
 
-    public function pesan()
-    {
-
-    }
-
     public function tampil($cinema)
     {
         dd($cinema);
         return view('transactions.index');
     }
+
+    
 }

@@ -97,23 +97,28 @@
                                                             </div> 
                                                       @else
                                                             @foreach($cinema->films as $film)
-                                                                  
                                                                   <div class="col-3">
                                                                         <a href="">
                                                                               <img src="{{ asset('storage/movie/'. $film->movie->picture) }}" class="img-fluid rounded-3 rounded" alt="">
                                                                         </a>
                                                                         <p class="text-center my-2 fs-4 fw-semibold text-break">{{ $film->movie->movie_nama }}</p>
                                                                         <a class="btn btn-primary d-block mb-3" href="">Pesan</a>
-                                                                        <form method="POST" action="{{ route('film.destroy',$film->id) }}">
-                                                                              @method('DELETE')
-                                                                              @csrf
-                                                                              <button type="submit" class="btn btn-danger d-block mb-3 col-12" title='Delete'>Delete</button>
-                                                                        </form>
-                                                                        <form method="POST" action="{{ route('film.update',$film) }}">
-                                                                              @csrf
-                                                                              <input type="text" placeholder="nama_baru" id="movie_nama" name="movie_nama">
-                                                                              <button type="submit" class="btn btn-success d-block col-12" title='Update'>Update</button>
-                                                                        </form>
+
+                                                                        @if($role === 'admin')
+                                                                              <form method="POST" action="{{ route('film.destroy',$film->id) }}">
+                                                                                    @method('DELETE')
+                                                                                    @csrf
+                                                                                    <button type="submit" class="btn btn-danger d-block mb-3 col-12" title='Delete'>Delete</button>
+                                                                              </form>
+                                                                              <form method="POST" action="{{ route('film.update',$film) }}">
+                                                                                    @method('PUT')
+                                                                                    @csrf
+                                                                                    
+                                                                                    <input type="text" placeholder="nama_baru" id="movie_nama" name="movie_nama" class="col-12 mb-1 rounded-1 border-1 border-dark">
+                                                                                    <button type="submit" class="btn btn-success d-block col-12" title='Update'>Update</button>
+                                                                              </form>
+                                                                        @endif
+                                                                        
                                                                   </div>
                                                                   
                                                             @endforeach
