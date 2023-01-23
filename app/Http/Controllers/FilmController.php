@@ -77,11 +77,20 @@ class FilmController extends Controller
         {
             $role = 'user';
         }
+        $provins = Provinsi::all()->where('provinsi_nama',$provinsi);
+        // dd($provin);
+        foreach($provins as $provin){
+            $prov = $provin->id;
+        }
+        // $prov = $provin->id;
+        $cinemasPerProvinsi = Cinema::all()->where('provinsi_id', $prov);
+
         return view('movie.index',[
             'provinsi' => $provinsi,
             'cinemas' => $cinemas,
             'role' => $this->role,
-            'movies' => $movies
+            'movies' => $movies,
+            'cinemasPerProvinsi' => $cinemasPerProvinsi
         ]);
     }
 
@@ -138,5 +147,7 @@ class FilmController extends Controller
         return view('transactions.index');
     }
 
-    
+    public function tambah(){
+        return view('film.index');
+    }
 }
