@@ -8,7 +8,7 @@
                         <h3 class="text-center">{{ ucfirst($provinsi) }}</h3>
 
                         <a href="{{ route('film.index') }}" class="btn btn-primary d-block">Pilih Provinsi</a>
-                        
+                        <a class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Film</a>
                         <div class="tab-content">
                               @if($provinsi === 'jakarta')
                                     <div class="tab-pane fade show active" id="jakarta" role="tabpanel">
@@ -138,7 +138,38 @@
                                     @endforeach
                               </div>
                         </div>
-
+                        {{-- modal --}}
+                        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form method="POST" action="" enctype="multipart/form-data">
+                                          <div class="mb-3">
+                                                <label for="movie_nama" class="form-label">Movie Name</label>
+                                                <input type="email" name="movie_nama" class="form-control" id="movie_nama" aria-describedby="emailHelp">                                          </div>
+                                          <div class="mb-3">
+                                                <label for="picture" class="form-label">Gambar</label>
+                                                <input class="form-control" name="picture" type="file" id="picture">
+                                          </div>
+                                          <div class="input-group mb-3">
+                                                <button class="btn btn-outline-secondary" type="button">Cinema</button>
+                                                <select class="form-select" id="inputGroupSelect03" aria-label="Example select with button addon">
+                                                      <option selected>Choose...</option>
+                                                      <option value="1">cinema ..</option>
+                                                      <option value="2">cinema ...</option>
+                                                      <option value="3">cinema ....</option>
+                                                </select>
+                                          </div>
+                                          <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                   </div>
 
             </section>

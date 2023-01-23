@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
+use App\Models\Movie;
 use App\Models\Cinema;
 use App\Models\Provinsi;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class FilmController extends Controller
     
     public function gantiRole($role)
     {
-        dd($role);
+        // dd($role);
         $this->role = $role;
 
         return redirect()->back();
@@ -65,21 +66,22 @@ class FilmController extends Controller
      */
     public function show(Film $film, $provinsi)
     {
-
+        $movies = Movie::all();
         $cinemas = Cinema::all();
         // dd($cinemas);
-        // if($this->role === 'admin')
-        // {
-        //     $role = 'admin';
-        // }
-        // elseif ($this->role === 'user') 
-        // {
-        //     $role = 'user';
-        // }
+        if($this->role === 'admin')
+        {
+            $role = 'admin';
+        }
+        elseif ($this->role === 'user') 
+        {
+            $role = 'user';
+        }
         return view('movie.index',[
             'provinsi' => $provinsi,
             'cinemas' => $cinemas,
-            'role' => $this->role
+            'role' => $this->role,
+            'movies' => $movies
         ]);
     }
 
