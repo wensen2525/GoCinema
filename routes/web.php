@@ -31,9 +31,9 @@ Route::get('/', [FilmController::class,'index'])->name('index');
 // Route::resource('certificates', CertificateController::class);
 
 Route::prefix('film')->name('film.')->group(function () {
-    Route::get('{provinsi}', [FilmController::class, 'show'])->name('show');
-    Route::get('{role}', [FilmController::class, 'gantiRole'])->name('ganti-role');
-    Route::post('tambah', [FilmController::class, 'tambah'])->name('tambah');
+    Route::post('/{provinsi}/{provinsi_id}', [FilmController::class, 'tampil'])->name('tampil');
+    // Route::get('{role}', [FilmController::class, 'gantiRole'])->name('ganti-role');
+    // Route::post('tambah', [FilmController::class, 'tambah'])->name('tambah');
 });
 Route::resource('film', FilmController::class);
 

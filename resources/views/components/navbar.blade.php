@@ -16,8 +16,11 @@
                 Role
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ route('film.ganti-role', 'admin') }}">Admin</a></li>
-                <li><a class="dropdown-item" href="{{ route('film.ganti-role', 'user') }}">User</a></li>
+                <form action="" method="post">
+
+                </form>
+                <li><a class="dropdown-item">Admin</a></li>
+                <li><a class="dropdown-item">User</a></li>
               </ul>
             </li>
           </ul>

@@ -6,12 +6,16 @@
                   <div class="container">
                         {{-- pilih cinema --}}
                         {{-- @dd($cinemasPerProvinsi); --}}
-                        <h3 class="text-center">{{ ucfirst($provinsi) }}</h3>
+                        @if (session('error'))
+                              <div class="alert alert-danger fade show alert-dismissible" role="alert">{!! session('error') !!}</div>
+                        @endif
+
+                        <h3 class="text-center">{{ ucfirst($provinsi->provinsi_nama) }}</h3>
 
                         <a href="{{ route('film.index') }}" class="btn btn-success d-block mb-2">Pilih Provinsi</a>
                         <a class="btn btn-primary d-block" data-bs-toggle="modal" data-bs-target="#tambah">Tambah Film</a>
                         <div class="tab-content">
-                              @if($provinsi === 'jakarta')
+                              @if($provinsi->provinsi_nama === 'jakarta')
                                     <div class="tab-pane fade show active" id="jakarta" role="tabpanel">
                                           <div class="d-flex justify-content-center align-items-center rounded-1 m-auto p-3 border border-1 border-dark my-2">
                                                 <ul class="nav nav-pills" role="tablist" id="pills-tab">
@@ -34,7 +38,7 @@
                                           </div>
                                     </div>
                               
-                              @elseif ($provinsi === 'surabaya')
+                              @elseif ($provinsi->provinsi_nama === 'surabaya')
                                     <div class="tab-pane fade show active" id="surabaya" role="tabpanel">
                                           <div class="d-flex justify-content-center align-items-center rounded-1 m-auto p-3 border border-1 border-dark my-2">
                                                 <ul class="nav nav-pills" role="tablist" id="pills-tab">
@@ -57,7 +61,7 @@
                                           </div>
                                     </div>
                               
-                              @elseif ($provinsi === 'bali')
+                              @elseif ($provinsi->provinsi_nama === 'bali')
                                     <div class="tab-pane fade show active" id="bali" role="tabpanel">
                                           <div class="d-flex justify-content-center align-items-center rounded-1 m-auto p-3 border border-1 border-dark my-2">
                                                 <ul class="nav nav-pills" role="tablist" id="pills-tab">
@@ -105,20 +109,17 @@
                                                                         <p class="text-center my-2 fs-4 fw-semibold text-break">{{ $film->movie->movie_nama }}</p>
                                                                         <a class="btn btn-primary d-block mb-3" href="">Pesan</a>
 
-                                                                        @if($role === 'admin')
                                                                               <form method="POST" action="{{ route('film.destroy',$film->id) }}">
                                                                                     @method('DELETE')
                                                                                     @csrf
                                                                                     <button type="submit" class="btn btn-danger d-block mb-3 col-12" title='Delete'>Delete</button>
                                                                               </form>
-                                                                              <form method="POST" action="{{ route('film.update',$film) }}">
-                                                                                    @method('PUT')
+                                                                              <form method="POST" action="{{ route('film.update',$film->id) }}">
                                                                                     @csrf
                                                                                     
                                                                                     <input type="text" placeholder="nama_baru" id="movie_nama" name="movie_nama" class="col-12 mb-1 rounded-1 border-1 border-dark">
                                                                                     <button type="submit" class="btn btn-success d-block col-12" title='Update'>Update</button>
                                                                               </form>
-                                                                        @endif
                                                                         
                                                                   </div>
                                                                   
@@ -148,7 +149,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                   </div>
                                   <div class="modal-body">
-                                    <form method="POST" action="{{ route('film.tambah') }}" enctype="multipart/form-data">
+                                    <form method="POST" action="" enctype="multipart/form-data">
                                           @csrf
                                           <div class="mb-3">
                                                 <label for="movie_nama" class="form-label">Movie Name</label>

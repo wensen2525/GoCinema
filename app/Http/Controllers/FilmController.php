@@ -3,24 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Film;
-use App\Models\Movie;
 use App\Models\Cinema;
 use App\Models\Provinsi;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFilmRequest;
 use App\Http\Requests\UpdateFilmRequest;
 
 class FilmController extends Controller
 {
 
-    public $role = 'admin';
-    
-    public function gantiRole($role)
+    public function __construct()
     {
-        // dd($role);
-        $this->role = $role;
-
-        return redirect()->back();
+        // $this->middleware('admin')->only('update');
     }
 
     /**
@@ -31,7 +27,7 @@ class FilmController extends Controller
     public function index()
     {
         $provinsis = Provinsi::all();
-        // dd($provinsis);
+
         return view('home',[
             'provinsis' => $provinsis
         ]);
@@ -64,32 +60,20 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function show(Film $film, $provinsi)
+    public function show(Film $film, $provinsii, $provinsi_id)
     {
-        $movies = Movie::all();
+        // dd($request);
         $cinemas = Cinema::all();
-        // dd($cinemas);
-        if($this->role === 'admin')
-        {
-            $role = 'admin';
-        }
-        elseif ($this->role === 'user') 
-        {
-            $role = 'user';
-        }
-        $provins = Provinsi::all()->where('provinsi_nama',$provinsi);
-        // dd($provin);
-        foreach($provins as $provin){
-            $prov = $provin->id;
-        }
-        // $prov = $provin->id;
-        $cinemasPerProvinsi = Cinema::all()->where('provinsi_id', $prov);
 
-        return view('movie.index',[
+        // mengambil array cinema sesuai provinsi yang dipilih
+        $cinemasPerProvinsi = Cinema::where('provinsi_id','=',$provinsi_id)->get();
+
+        // mengambil nama provinsi
+        $provinsi = Provinsi::firstWhere('id','=',$provinsi_id);
+
+        return view('movie.show',[
             'provinsi' => $provinsi,
             'cinemas' => $cinemas,
-            'role' => $this->role,
-            'movies' => $movies,
             'cinemasPerProvinsi' => $cinemasPerProvinsi
         ]);
     }
@@ -112,7 +96,7 @@ class FilmController extends Controller
      * @param  \App\Models\Film  $film
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateFilmRequest $request, Film $film)
+    public function update(UpdateFilmRequest $request, $film, $provinsi)
     {
         // dd($request);
         $request->validate([
@@ -139,10 +123,22 @@ class FilmController extends Controller
         return redirect()->back();
     }
 
-    public function tampil($cinema)
+    public function tampil($provinsi_nama, $provinsi_id)
     {
-        dd($cinema);
-        return view('transactions.index');
+        // dd($provinsi_nama);
+        $cinemas = Cinema::all();
+
+        // mengambil array cinema sesuai provinsi yang dipilih
+        $cinemasPerProvinsi = Cinema::where('provinsi_id','=',$provinsi_id)->get();
+
+        // mengambil nama provinsi
+        $provinsi = Provinsi::firstWhere('id','=',$provinsi_id);
+
+        return view('movie.show',[
+            'provinsi' => $provinsi,
+            'cinemas' => $cinemas,
+            'cinemasPerProvinsi' => $cinemasPerProvinsi
+        ]);
     }
 
     public function tambah(){

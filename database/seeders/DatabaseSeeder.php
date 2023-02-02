@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Data;
 use Illuminate\Database\Seeder;
 use Database\Seeders\FilmSeeder;
+use Database\Seeders\RoleSeeder;
 use Database\Seeders\MovieSeeder;
 use Database\Seeders\CinemaSeeder;
 use Database\Seeders\ProvinsiSeeder;
@@ -23,7 +24,8 @@ class DatabaseSeeder extends Seeder
             ProvinsiSeeder::class,
             MovieSeeder::class,
             CinemaSeeder::class,
-            FilmSeeder::class
+            FilmSeeder::class,
+            RoleSeeder::class
         ]);
     }
 }

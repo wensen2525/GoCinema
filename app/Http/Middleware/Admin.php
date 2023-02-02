@@ -17,8 +17,10 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         // if (!auth()->check()) {
-        //     return redirect()->back()->with('fail', 'yey');
+        //     return redirect()->back()->with('error', 'NOT AUTHORIZED');
         // }
+
+        if(auth()->check)
         return $next($request);
     }
 }
