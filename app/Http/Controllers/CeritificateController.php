@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\DataExport;
-use App\Imports\DataImport;
 use App\Models\Certificate;
-use App\Models\Participant;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
-class CertificateController extends Controller
+class CeritificateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +15,7 @@ class CertificateController extends Controller
      */
     public function index()
     {
-        return view('certificates.index',[
-            'participants' => Participant::all()
-        ]);
+        //
     }
 
     /**
@@ -89,5 +84,24 @@ class CertificateController extends Controller
         //
     }
 
-    
+    public function download($participant){
+
+        $pdf = Pdf::loadView('certificates.pdf',[
+            'participant' => $participant
+        ])->setPaper('a4', 'landscape');
+        return $pdf->download('result.pdf');
+
+        // return view('certificates.pdf',[
+        //     'participant' => $participant
+        // ]);
+    }
+    public function view(){
+
+    }
+    public function send(){
+
+    }
+    public function viewpdf(){
+        return view('certificates.pdf-view');
+    }
 }

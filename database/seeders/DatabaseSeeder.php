@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ProvinsiSeeder::class,
-            MovieSeeder::class,
-            CinemaSeeder::class,
-            FilmSeeder::class,
-            RoleSeeder::class
+            // ProvinsiSeeder::class,
+            // MovieSeeder::class,
+            // CinemaSeeder::class,
+            // FilmSeeder::class,
+            // RoleSeeder::class
         ]);
     }
 }

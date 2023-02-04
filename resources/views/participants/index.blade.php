@@ -20,7 +20,6 @@
                                                 </form>
                                           </div>  
                                     </div>
-                                    
                                     <div class="border-bottom border-top border-dark d-flex justify-content-center p-3">
                                           <form action="" method="get">
                                                 <div class="d-flex gap-5 align-items-center">
@@ -28,7 +27,7 @@
                                                             <th scope="col"><strong>Created at:</strong> 2023-11-02 11:22:22 AM</th>
                                                       </div>
 
-                                                      <a class="btn btn-primary px-3 py-1" href="{{ route('participants.delete-all') }}">Delete</a>
+                                                      <a class="btn btn-danger px-3 py-1" href="{{ route('participants.delete-all') }}">Delete</a>
                                                       <a class="btn btn-primary px-3 py-1" href="{{ route('participants.update-all',['value' => 'All']) }}">All</a>
                                                       <a class="btn btn-primary px-3 py-1" href="{{ route('participants.update-all',['value' => 'User']) }}">User</a>
                                                       <a class="btn btn-primary px-3 py-1" href="{{ route('participants.update-all',['value' => 'Guest']) }}">Guest</a>
@@ -43,6 +42,7 @@
                                     <div class="border-bottom border-dark d-flex justify-content-center p-3 gap-3">
                                           <p class="fs-5 m-0">DATA - 1</p>
                                           <a href="{{route('participants.export')}}" target="_blank"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                          <a href="{{route('ceritificates.viewpdf')}}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                     </div>
                                     <div class="p-3">
                                           <div class="table-responsive" style="max-height: 50vh">
@@ -52,8 +52,7 @@
                                                                   <th scope="col">No</th>
                                                                   <th scope="col">Nama</th>
                                                                   <th scope="col">Email</th>
-                                                                  <th scope="col">Role</th>
-                                                                  <th scope="col">Download</th>
+                                                                  <th scope="col">Download / View</th>
                                                                   <th scope="col">Sent</th>
                                                             </tr>
                                                       </thead>
@@ -65,12 +64,12 @@
                                                                               {{$participant->name}}
                                                                         </td>
                                                                         <td>{{$participant->email}}</td>
-                                                                        <td>1</td>
                                                                         <td>
-                                                                              <a href="" target="_blank"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                                                              <a href="{{ route('ceritificates.download', $participant->name) }}" target="_blank"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                                                              <a href="{{ route('ceritificates.view') }}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                         <td>
-                                                                              <a href="" target=""><i class="bi bi-send btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                                                             <a href="{{ route('ceritificates.send') }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                   </tr>
                                                             @endforeach

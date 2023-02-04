@@ -20,7 +20,7 @@ class Admin
         //     return redirect()->back()->with('error', 'NOT AUTHORIZED');
         // }
 
-        if(auth()->check)
+        // if(auth()->check)
         return $next($request);
     }
 }

@@ -11,9 +11,15 @@
                               <ul class="nav nav-pills" role="tablist" id="pills-tab">
                                     @foreach ($provinsis as $provinsi)
                                           <li class="nav-item" role="presentation">
-                                                <a class="nav-link" href="{{ route('film.show', $provinsi->provinsi_nama) }}">
-                                                      {{ ucfirst($provinsi->provinsi_nama) }}
-                                                </a>
+                                                
+                                                <form action="{{ route('film.tampil', [$provinsi->provinsi_nama ,$provinsi->id]) }}" method="post">
+                                                      @csrf
+                                                      <input type="hidden" value="" name="data" id="data">
+                                                      <button class="nav-link" type="submit">
+                                                            {{ ucfirst($provinsi->provinsi_nama) }}
+                                                      </button>
+                                                </form>
+                                                
                                           </li>
                                     @endforeach
                               </ul>
@@ -22,7 +28,7 @@
                   </div>
                   <div class="container">
                         <div class="row mx-auto border border-1 border-dark rounded-2">
-                              <img src="storage/poster/relasi.jpg" alt="" class="img-fluid">
+                              <img src="{{ asset('storage/poster/relasi.jpg') }}" alt="" class="img-fluid">
                         </div>
                   </div>
 

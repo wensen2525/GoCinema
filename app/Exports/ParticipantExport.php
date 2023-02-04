@@ -14,7 +14,6 @@ class ParticipantExport implements FromCollection,WithHeadings
     public function collection()
     {
         return Participant::all();
-
         
     }
 

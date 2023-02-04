@@ -12,4 +12,6 @@ class Data extends Model
     protected $primaryKey = 'id';
     protected $timestamp = true;
     protected $guarded = [];
+
+    //relationship
 }
