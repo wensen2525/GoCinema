@@ -87,22 +87,20 @@ class CeritificateController extends Controller
         //
     }
 
-    public function download($participant){
-
+    public function download(Participant $participant){
+        // dd($participant);
         $pdf = Pdf::loadView('certificates.pdf',[
             'participant' => $participant
         ])->setPaper('a4', 'landscape');
-        return $pdf->download('result.pdf');
+        return $pdf->download($participant->name.'.pdf');
 
-        // return view('certificates.pdf',[
-        //     'participant' => $participant
-        // ]);
     }
     public function view(){
 
     }
     // 
     public function send(Participant $participant){
+
         Mail::to($participant->email)->send(new SendMail($participant));
 
         return redirect()->route('participants.index')->with('success', 'Invoice sent successfully.');

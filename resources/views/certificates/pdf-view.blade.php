@@ -5,7 +5,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>certificate</title>
+      <title>Certificate | wen sen tan</title>
       @vite('resources/js/app.js' , 'vendor/courier/build')
       <style type="text/css">
         /* To remove margin while generating PDF. */
@@ -17,41 +17,49 @@
             margin: 0;
             height: 8.27in;
             width: 11.69in;
-		border: 1px solid black;
+            border: 1px solid black;
             background-image: url('storage/certificates/NEO-2022.png');
             background-size: 11.69in 8.27in; /* Not sure whether it works with DOMPDF. So, using a background of actual size. */
             background-repeat: no-repeat;
-		position: relative;
         }
+
+        main{
+            position: relative;
+        }
+        
         .name {
-		/* text */
             font-family: sans-serif;
             font-size: .44in;
             line-height: .44in;
             font-weight: 700;
             text-transform: uppercase;
             color: #000000;
-		text-align: center;
-
-		/* size */
-		height: 8.27in;
-            
-		/* padding */
-		padding-left: 100px;
-		padding-right: 100px;
+            margin-top: 3in;
+            text-align: center;
 		
         }
-	  .text{
+
+        .position {
+            font-family: sans-serif;
+            font-size: .28in;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
 		
-		word-wrap: break-word;
-		word-break: break-all;
+            /* psotition */
+            position: relative;
+        }
 
-		display: flex;
-		align-items: center;
-		/* padding-bottom: 50px; */
-
-		height: 8.27in;
-	  }
+        .competition {
+            font-family: sans-serif;
+            font-size: .28in;
+            font-weight: 500;
+            color: #000000;
+            text-align: center;
+            
+            /* psotition */
+            position: relative;
+        }
     </style>
 </head>
 
@@ -60,13 +68,14 @@
 <body>
       <main>
             <div class="name">
-			<div class="text">
-				aaaaaaaaaaaaaaaaaaaaaaaaaaaadffffffaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-			</div>
-                
+                wen sen tan
+            </div >
+            <div class="position">
+                  Winner
             </div>
-
-
+            <div class="competition">
+                  Orang paling Sabar
+            </div>
             
       </main>
 </body>
