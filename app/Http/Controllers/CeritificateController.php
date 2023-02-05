@@ -101,8 +101,8 @@ class CeritificateController extends Controller
     public function view(){
 
     }
+    // 
     public function send(Participant $participant){
-        // dd($participant->email);
         Mail::to($participant->email)->send(new SendMail($participant));
 
         return redirect()->route('participants.index')->with('success', 'Invoice sent successfully.');
