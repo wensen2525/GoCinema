@@ -81,7 +81,7 @@
                 Winner
             </div>
             <div class="competition">
-                UI UX DESIGNER
+                ....
             </div>
             
       </main>
