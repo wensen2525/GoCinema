@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\Certificate;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class CeritificateController extends Controller
 {
@@ -98,8 +101,11 @@ class CeritificateController extends Controller
     public function view(){
 
     }
-    public function send(){
+    public function send(Participant $participant){
+        // dd($participant->email);
+        Mail::to($participant->email)->send(new SendMail($participant));
 
+        return redirect()->route('participants.index')->with('success', 'Invoice sent successfully.');
     }
     public function viewpdf(){
         return view('certificates.pdf-view');

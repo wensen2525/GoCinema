@@ -4,6 +4,11 @@
             <section id="awal">
                   <div class="container">
                         <div class="row">
+                              @if(session()->has('success'))
+                                    <div class="alert alert-success">
+                                          {{ session()->get('success') }}
+                                    </div>
+                              @endif
                               <a href="" target=""><i class="bi bi-arrow-left btn btn-primary px-2 py-1 text-light position-absolute start-0" style="font-size:13px;"></i></a>
                               <div class="border border-1 border-dark rounded-3 p-0">
                                     <div class="border-dark row col-12 m-auto">
@@ -69,7 +74,7 @@
                                                                               <a href="{{ route('ceritificates.view') }}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                         <td>
-                                                                             <a href="{{ route('ceritificates.send') }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                                                             <a href="{{ route('ceritificates.send', $participant) }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                   </tr>
                                                             @endforeach
