@@ -27,7 +27,7 @@ class SendMail extends Mailable
         $participant = $this->participant;
 
         $certificate = Pdf::loadView('certificates.pdf',[
-            'participant' => $participant->name
+            'participant' => $participant
         ])->setPaper('a4', 'landscape');
 
         return $this->markdown('emails.certificate_neo.mail')

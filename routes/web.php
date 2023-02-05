@@ -29,8 +29,8 @@ Route::prefix('participants')->name('participants.')->group(function () {
 Route::resource('participants', ParticipantController::class);
 
 Route::prefix('ceritificates')->name('ceritificates.')->group(function () {
-    Route::get('view', [CeritificateController::class, 'view'])->name('view');
-    Route::get('download/{participant}', [CeritificateController::class, 'download'])->name('download');
+    Route::get('{participant}/view', [CeritificateController::class, 'view'])->name('view');
+    Route::get('{participant}/download', [CeritificateController::class, 'download'])->name('download');
     Route::get('{participant}/send', [CeritificateController::class, 'send'])->name('send');
     Route::get('viewpdf', [CeritificateController::class, 'viewpdf'])->name('viewpdf');
 });

@@ -95,15 +95,18 @@ class CeritificateController extends Controller
         return $pdf->download($participant->name.'.pdf');
 
     }
-    public function view(){
-
+    public function view(Participant $participant){
+        $pdf = Pdf::loadView('certificates.pdf',[
+            'participant' => $participant
+        ])->setPaper('a4', 'landscape');
+        return $pdf->stream();
     }
     // 
     public function send(Participant $participant){
 
         Mail::to($participant->email)->send(new SendMail($participant));
 
-        return redirect()->route('participants.index')->with('success', 'Invoice sent successfully.');
+        return redirect()->route('participants.index')->with('success', 'Certificate sent successfully.');
     }
     public function viewpdf(){
         return view('certificates.pdf-view');

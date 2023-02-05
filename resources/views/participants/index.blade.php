@@ -71,7 +71,7 @@
                                                                         <td>{{$participant->email}}</td>
                                                                         <td>
                                                                               <a href="{{ route('ceritificates.download', $participant) }}" target="_blank"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
-                                                                              <a href="{{ route('ceritificates.view') }}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
+                                                                              <a href="{{ route('ceritificates.view', $participant) }}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                         <td>
                                                                              <a href="{{ route('ceritificates.send', $participant) }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a>
