@@ -21,8 +21,11 @@ class ParticipantController extends Controller
      */
     public function index()
     {
+        // $image = base64_encode(file_get_contents(public_path('storage/certificates/NEO-2022.png')));
+        // dd($image);
         return view('participants.index',[
             'participants' => Participant::all()
+            // 'image' => $image
         ]);
     }
 

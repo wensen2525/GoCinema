@@ -79,7 +79,8 @@
                                                                   </tr>
                                                             @endforeach
                                                       </tbody>
-                                                </table>  
+                                                </table>
+                                                {{-- <img src="data:NEO-2022/png;base64,{{ $image }}"/> --}}
                                           </div>
                                           
                                     </div>

@@ -8,6 +8,7 @@ use App\Models\Participant;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class CeritificateController extends Controller
 {
@@ -89,9 +90,12 @@ class CeritificateController extends Controller
 
     public function download(Participant $participant){
         // dd($participant);
+        // $image = Storage::disk('public')->get('storage/certificates/NEO-2022.png'); 
         $pdf = Pdf::loadView('certificates.pdf',[
-            'participant' => $participant
+            'participant' => $participant,
+            // 'image' => $image
         ])->setPaper('a4', 'landscape');
+        $pdf->render();
         return $pdf->download($participant->name.'.pdf');
 
     }
@@ -103,12 +107,18 @@ class CeritificateController extends Controller
     }
     // 
     public function send(Participant $participant){
-
+        
         Mail::to($participant->email)->send(new SendMail($participant));
 
         return redirect()->route('participants.index')->with('success', 'Certificate sent successfully.');
     }
     public function viewpdf(){
-        return view('certificates.pdf-view');
+        // $image = base64_encode(file_get_contents(public_path('storage/certificates/NEO-2022.png')));
+        // $img0 = url('data:image/png;base64,'.$image);
+        $image = Storage::disk('public')->get('certificates/NEO-2022.png'); 
+        // dd($image);$contents = Storage::get('file.jpg');
+        return view('certificates.pdf-view',[
+            'image' => $image
+        ]);
     }
 }

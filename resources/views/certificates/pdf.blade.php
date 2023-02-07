@@ -21,69 +21,80 @@
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
-            height: 8.27in;
-            width: 11.69in;
-            border: 1px solid rgb(255, 255, 255);
-            background-image: url('storage/certificates/NEO-2022.png');
-            background-size: 11.69in 8.27in; /* Not sure whether it works with DOMPDF. So, using a background of actual size. */
-            background-repeat: no-repeat;
+            height: 8.26772in;
+            width: 11.6929in;
+            /* background: url('storage/certificates/NEO-2022-baru.png'); */
+            /* background-size: 11.6929in 8.26772in; */
+            /* Not sure whether it works with DOMPDF. So, using a background of actual size. */
+            /* background-repeat: no-repeat; */
         }
 
         main{
             position: relative;
         }
-        
-        .name {
-            font-size: .44in;
-            line-height: .44in;
-            font-weight: bolder;
+
+        .introduction{
             text-transform: uppercase;
             color: #ffffff;
-            margin-top: 2.8in;
+            letter-spacing: .033in;
+            font-size: .207in;
+            font-weight: 500;
+            text-align: center;
+            margin-top: 2.42in;
+        }
+        .name {
+            font-size: .51in;
+            line-height: .45in;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #ffffff;
+            margin-bottom: .135in;
             text-align: center;
             
         }
-
         .position {
-            font-size: .23in;
-            font-weight: 700;
+            line-height: .4cm;
+            padding: 0;
+            margin: 0;
+            font-size: .215in;
+            font-weight: 500;
             color: #ffffff;
             text-align: center;
-		
-            /* psotition */
-            position: relative;
-            right: 4.7cm;
-        }
-
-        .competition {
-            font-size: .23in;
-            font-weight: 700;
-            color: #ffffff;
-            text-align: center;
-            
-            /* psotition */
-            position: relative;
-            bottom: 1.165cm;
-            left: 1.6cm;
         }
     </style>
-    <title>Certificate | {{ $participant->name }}</title>
+    <title>Certificate NEO 2022 | {{ $participant->name }}</title>
 </head>
 
 
 
 <body>
+    <img src="../public/storage/certificates/NEO-2022-full.jpg" alt="NEO-2022-full" style="position:absolute; width: 11.6929in; top:0;left:0">
       <main>
-            <div class="name">
+            <p class="introduction">
+                THIS CERTIFICATE IS AWARDED TO :
+            </p>
+            <p class="name">
                 {{ $participant->name }}
-            </div >
-            <div class="position">
-                Winner
-            </div>
-            <div class="competition">
-                ....
-            </div>
-            
-      </main>
+            </p>
+            <p class="position">
+                As the <strong>Winner of Short Story Writing Competition</strong> in
+                <br>
+                The 2022 National English Olympics
+            </p>
+            <p class="general_president">
+                WISNU RAMADHAN
+                <br>
+                General President
+            </p>
+            <p class="rector">
+                SDSDS
+                <br>
+                Vice Rector Binus
+            </p>
+            <p class="project_manager">
+                VANESA YANIARTA
+                <br>
+                Project Manager
+            </p>
 </body>
 </html>

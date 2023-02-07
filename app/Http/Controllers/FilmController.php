@@ -133,7 +133,7 @@ class FilmController extends Controller
 
         // mengambil nama provinsi
         $provinsi = Provinsi::firstWhere('id','=',$provinsi_id);
-
+        
         return view('movie.show',[
             'provinsi' => $provinsi,
             'cinemas' => $cinemas,
