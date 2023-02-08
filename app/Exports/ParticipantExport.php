@@ -25,6 +25,7 @@ class ParticipantExport implements FromCollection,WithHeadings
             'COMPETITION',
             'POSITION',
             'PLACE',
+            'ROLE',
             'CREATED_AT',
             'UPDATED_AT'
         ];

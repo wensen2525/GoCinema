@@ -64,7 +64,7 @@
                                                                   <th scope="col">Competition</th>
                                                                   <th scope="col">Position</th>
                                                                   <th scope="col">Place</th>
-                                                                  <th scope="col">Download / View</th>
+                                                                  <th scope="col">Download / Save</th>
                                                                   <th scope="col">Sent</th>
                                                             </tr>
                                                       </thead>
