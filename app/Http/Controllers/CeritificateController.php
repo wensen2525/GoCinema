@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Mail\SendMail;
 use App\Models\Certificate;
 use App\Models\Participant;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use PhpParser\Node\Stmt\Foreach_;
 
 class CeritificateController extends Controller
 {
@@ -89,21 +91,51 @@ class CeritificateController extends Controller
     }
 
     public function download(Participant $participant){
-        // dd($participant);
-        // $image = Storage::disk('public')->get('storage/certificates/NEO-2022.png'); 
+        $length_name = Str::length($participant->name);
+        // dd($length_name);
         $pdf = Pdf::loadView('certificates.pdf',[
             'participant' => $participant,
-            // 'image' => $image
+            'length_name' => $length_name
         ])->setPaper('a4', 'landscape');
-        $pdf->render();
         return $pdf->download($participant->name.'.pdf');
 
     }
-    public function view(Participant $participant){
+
+    public function downloadAllCertificates($scale){
+        if($scale === '1 - 50'){
+            $participants = Participant::all()->take(50);
+        }   
+        elseif($scale === '51 - 100'){
+            $participants = Participant::all()->skip(50)->take(50);
+        }
+            
+
+        foreach($participants as $participant) {
+            $length_name = Str::length($participant->name);
+            $pdf = Pdf::loadView('certificates.pdf',[
+                'participant' => $participant,
+                'length_name' => $length_name
+            ])->setPaper('a4', 'landscape');
+
+            $content = $pdf->download();
+
+            Storage::put('public/certi/'.$participant->name.'.pdf',$content);
+        }
+        return redirect()->back();
+    }
+
+    public function save(Participant $participant){
+        $length_name = Str::length($participant->name);
+        // dd($length_name);
         $pdf = Pdf::loadView('certificates.pdf',[
-            'participant' => $participant
+            'participant' => $participant,
+            'length_name' => $length_name
         ])->setPaper('a4', 'landscape');
-        return $pdf->stream();
+
+        $content = $pdf->download();
+
+        Storage::put('public/certi/'.$participant->name.'.pdf',$content);
+        return redirect()->back();
     }
     // 
     public function send(Participant $participant){
@@ -113,12 +145,6 @@ class CeritificateController extends Controller
         return redirect()->route('participants.index')->with('success', 'Certificate sent successfully.');
     }
     public function viewpdf(){
-        // $image = base64_encode(file_get_contents(public_path('storage/certificates/NEO-2022.png')));
-        // $img0 = url('data:image/png;base64,'.$image);
-        $image = Storage::disk('public')->get('certificates/NEO-2022.png'); 
-        // dd($image);$contents = Storage::get('file.jpg');
-        return view('certificates.pdf-view',[
-            'image' => $image
-        ]);
+        return view('certificates.pdf-view');
     }
 }

@@ -11,7 +11,7 @@
 <body>
       <main>
             <div id="home">
-                  <x-navbar></x-navbar>
+                  {{-- <x-navbar></x-navbar> --}}
                   {{$slot}}
             </div>
             

@@ -27,19 +27,15 @@ class SendMail extends Mailable
     {   
         $participant = $this->participant;
 
-        $certificate = Pdf::loadView('certificates.pdf',[
+        $pdf = Pdf::loadView('certificates.pdf',[
             'participant' => $participant
         ])->setPaper('a4', 'landscape');
+        $pdf->render();
 
-        // if(Storage::disk('public')->exists('certificates/Wen Sen Tan.pdf')){
-        //     $file = Storage::download('Wen Sen Tan.pdf');
-        // }else{
-        //     dd('tak ada');
-        // }
-        // dd($certificate);
+
         return $this->markdown('emails.certificate_neo.mail')
                     ->subject('NEO 2022 - Participant Certificate')
-                    ->attachData($certificate->output(),$participant->name . '.pdf');
+                    ->attachData($pdf->output(),$participant->name . '.pdf');
                     // ->attachData($file . $participant->name . '.pdf', $participant->name . '.pdf',[
                     //     'mime' => 'application/pdf'
                     // ]);

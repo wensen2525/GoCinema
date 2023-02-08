@@ -17,6 +17,9 @@ class ParticipantImport implements ToModel
         return new Participant([
             'name' => $row['1'],
             'email' => $row['2'],
+            'competition' => $row['3'],
+            'position' => $row['4'],
+            'place' => $row['6']
         ]);
     }
 }

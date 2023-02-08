@@ -42,11 +42,21 @@
             text-align: center;
             margin-top: 2.42in;
         }
-        .name {
-            font-size: .51in;
+        .long_name {
+            font-size: .4in;
             line-height: .45in;
             font-weight: 600;
-            text-transform: uppercase;
+            /* text-transform: capitalize; */
+            color: #ffffff;
+            margin-bottom: .135in;
+            text-align: center;
+            
+        }
+        .short_name {
+            font-size: .5in;
+            line-height: .45in;
+            font-weight: 600;
+            /* text-transform: capitalize; */
             color: #ffffff;
             margin-bottom: .135in;
             text-align: center;
@@ -60,6 +70,36 @@
             font-weight: 500;
             color: #ffffff;
             text-align: center;
+            margin-bottom: 0.93in;
+        }
+
+        .general_president {
+            font-size: .17in;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+
+            position: relative;
+            top: 69.5px;
+            right: 245px;
+        }
+        .rector {
+            font-size: .17in;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+
+            position: relative;
+        }
+        .project_manager {
+            font-size: .17in;
+            font-weight: 600;
+            color: #ffffff;
+            text-align: center;
+
+            position: relative;
+            bottom: 70px;
+            left: 242px;
         }
     </style>
     <title>Certificate NEO 2022 | {{ $participant->name }}</title>
@@ -69,32 +109,47 @@
 
 <body>
     <img src="../public/storage/certificates/NEO-2022-full.jpg" alt="NEO-2022-full" style="position:absolute; width: 11.6929in; top:0;left:0">
-      <main>
+        <main>
             <p class="introduction">
                 THIS CERTIFICATE IS AWARDED TO :
             </p>
-            <p class="name">
-                {{ $participant->name }}
-            </p>
+            @if($length_name > 29)
+                <p class="long_name">
+                    {{ $participant->name }}
+                </p>
+            @else
+                <p class="short_name">
+                    {{ $participant->name }}
+                </p>
+            @endif
             <p class="position">
-                As the <strong>Winner of Short Story Writing Competition</strong> in
+                As the <strong>{{ $participant->position }} of {{ $participant->competition }} Competition</strong> in
                 <br>
                 The 2022 National English Olympics
             </p>
-            <p class="general_president">
+            <div class="general_president">
                 WISNU RAMADHAN
                 <br>
-                General President
-            </p>
-            <p class="rector">
-                SDSDS
+                <div style="font-weight:500;font-size:0.16in">
+                    General President
+                </div>
+            </div>
+            <div class="rector">
+                JOHAN, S.KOM., M.M., CDMS
                 <br>
-                Vice Rector Binus
-            </p>
-            <p class="project_manager">
+                <div style="font-weight:500;font-size:0.15in;line-height: 0.3cm;margin-top:7px">
+                    Vice Rector Student Affairs &
+                    <br>
+                    Community Development
+                </div>
+            </div>
+            <div class="project_manager">
                 VANESA YANIARTA
                 <br>
-                Project Manager
-            </p>
+                <div style="font-weight:500;font-size:0.16in">
+                    Project Manager
+                </div>
+            </div>
+        </main>
 </body>
 </html>

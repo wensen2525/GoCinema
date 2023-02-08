@@ -29,10 +29,11 @@ Route::prefix('participants')->name('participants.')->group(function () {
 Route::resource('participants', ParticipantController::class);
 
 Route::prefix('ceritificates')->name('ceritificates.')->group(function () {
-    Route::get('{participant}/view', [CeritificateController::class, 'view'])->name('view');
+    Route::get('{participant}/save', [CeritificateController::class, 'save'])->name('save');
     Route::get('{participant}/download', [CeritificateController::class, 'download'])->name('download');
     Route::get('{participant}/send', [CeritificateController::class, 'send'])->name('send');
     Route::get('viewpdf', [CeritificateController::class, 'viewpdf'])->name('viewpdf');
+    Route::get('{scale}/download-all-certificates', [CeritificateController::class, 'downloadAllCertificates'])->name('download-all-certificates');
 });
 Route::resource('ceritificates', CeritificateController::class);
 

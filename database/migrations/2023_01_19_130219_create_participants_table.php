@@ -17,6 +17,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email');
+            $table->string('competition');
+            $table->string('position');
+            $table->string('place')->nullable();
+            $table->string('role')->default('User');
             $table->timestamps();
         });
     }

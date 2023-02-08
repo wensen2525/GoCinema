@@ -21,7 +21,12 @@ class ParticipantExport implements FromCollection,WithHeadings
         return [
             'NO',
             'NAME',
-            'EMAIL'
+            'EMAIL',
+            'COMPETITION',
+            'POSITION',
+            'PLACE',
+            'CREATED_AT',
+            'UPDATED_AT'
         ];
     }
 }
