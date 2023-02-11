@@ -33,7 +33,9 @@ class SendMail extends Mailable
             'participant' => $participant
         ])->setPaper('a4', 'landscape');
         $pdf->render();
-
+        
+        // $url = public_path('certificates/Logo-NEO-2022.png');
+        // dd($url);
 
         return $this->markdown('emails.certificate_neo.mail')
                     ->subject('NEO 2022 - Participant Certificate')

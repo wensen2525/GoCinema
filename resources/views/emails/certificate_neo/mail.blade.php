@@ -68,7 +68,7 @@
                         The 2022 National English Olympics Committee<br>
                         Phone  : +62 812 7794 3168<br>
                         Email   : neo.bnec@gmail.com<br>
-                        <img src="{{ $message->embed(public_path() . '/certificates/Logo-NEO-2022-jpg.png') }}" alt="Logo-NEO"/>
+                        <img src="https://neo.mybnec.org/storage/images/assets/NEO_2.png" width="40%">
                   </p>
             @else
                   <h1 class="head_email">Dear {{ $participant->name }},</h1>
@@ -87,7 +87,7 @@
                         The 2022 National English Olympics Committee<br>
                         Phone  : +62 812 7794 3168<br>
                         Email   : neo.bnec@gmail.com<br>
-                        <img src="{{ $message->embed(public_path() . '/certificates/Logo-NEO-2022-jpg.png') }}" alt="Logo-NEO"/>
+                        <img src="https://neo.mybnec.org/storage/images/assets/NEO_2.png" width="40%">
                   </p>
             @endif
             
