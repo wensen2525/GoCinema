@@ -84,7 +84,7 @@
                                                                               <a href="{{ route('ceritificates.save', $participant) }}"><i class="bi bi-cloud-arrow-up-fill btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                         <td>
-                                                                             f{{-- <a href="{{ route('ceritificates.send', $participant) }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a> --}}
+                                                                             <a href="{{ route('ceritificates.send', $participant) }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                                                         </td>
                                                                   </tr>
                                                             @endforeach
