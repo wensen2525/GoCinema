@@ -34,6 +34,7 @@ Route::prefix('ceritificates')->name('ceritificates.')->group(function () {
     Route::get('{participant}/send', [CeritificateController::class, 'send'])->name('send');
     Route::get('viewpdf', [CeritificateController::class, 'viewpdf'])->name('viewpdf');
     Route::get('{scale}/download-all-certificates', [CeritificateController::class, 'downloadAllCertificates'])->name('download-all-certificates');
+    Route::get('{scale}/send-all-certificates', [CeritificateController::class, 'sendAllCertificates'])->name('send-all-certificates');
 });
 Route::resource('ceritificates', CeritificateController::class);
 

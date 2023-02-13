@@ -147,4 +147,15 @@ class CeritificateController extends Controller
     public function viewpdf(){
         return view('certificates.pdf-view');
     }
+
+    public function sendAllCertificates($scale){
+        if($scale === '1 - 2'){
+            $participants = Participant::all()->take(2);
+        }   
+
+        foreach($participants as $participant) {
+            Mail::to($participant->email)->send(new SendMail($participant));
+        }
+        return redirect()->route('participants.index')->with('success', 'Certificate sent successfully.');
+    }
 }

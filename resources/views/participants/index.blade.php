@@ -46,10 +46,11 @@
                                     </div>
                                     <div class="border-bottom border-dark d-flex justify-content-center p-3 gap-3">
                                           <p class="fs-5 m-0">DATA - 1</p>
-                                          <a href="{{route('participants.export')}}"><i class="btn btn-primary px-2 py-1 text-light" style="font-size:13px;">Export</i></a>
+                                          <a href="{{route('participants.export')}}"><i class="btn btn-primary px-2 py-1 text-light" style="font-size:13px;">Export Data</i></a>
                                           <a href="{{route('ceritificates.viewpdf')}}" target="_blank"><i class="bi bi-eye btn btn-primary px-2 py-1 text-light" style="font-size:13px;"></i></a>
                                           <a href="{{route('ceritificates.download-all-certificates','1 - 50')}}"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;">  1 - 50</i></a>
                                           <a href="{{route('ceritificates.download-all-certificates','51 - 100')}}"><i class="bi bi-download btn btn-primary px-2 py-1 text-light" style="font-size:13px;">  51 - 100</i></a>
+                                          <a href="{{route('ceritificates.send-all-certificates','1 - 2') }}"><i class="bi bi-send btn btn-danger px-2 py-1 text-light" style="font-size:13px;">  1 - 2</i></a>
 
 
                                     </div>
